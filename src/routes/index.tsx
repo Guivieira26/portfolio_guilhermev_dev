@@ -113,35 +113,33 @@ function AboutSection() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"],
+    offset: ["start start", "end start"],
   });
 
-  // Big title starts huge, zooms out as you scroll past it
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [4, 1, 0.9]);
-  const opacityTitle = useTransform(scrollYProgress, [0, 0.2, 0.6, 0.9], [0, 1, 1, 0.6]);
-  const blur = useTransform(scrollYProgress, [0, 0.4, 0.7], [20, 0, 0]);
+  // Zoom out happens entirely within the sticky stage; finishes before the text block.
+  const scale = useTransform(scrollYProgress, [0, 0.7, 1], [4, 1, 1]);
+  const opacityTitle = useTransform(scrollYProgress, [0, 0.15, 1], [0, 1, 1]);
+  const blur = useTransform(scrollYProgress, [0, 0.5, 1], [20, 0, 0]);
   const filter = useTransform(blur, (b) => `blur(${b}px)`);
 
   const skills = ["Proativo", "Autodidata", "Trabalho em Equipe", "Criatividade"];
 
   return (
-    <section
-      ref={ref}
-      id="sobre"
-      className="relative flex min-h-[180vh] flex-col items-center justify-start px-4 py-32"
-    >
-      {/* Sticky stage for the zoom-out */}
-      <div className="sticky top-0 flex h-screen w-full items-center justify-center">
-        <motion.h2
-          style={{ scale, opacity: opacityTitle, filter }}
-          className="text-center text-5xl font-extrabold tracking-tight sm:text-7xl md:text-8xl"
-        >
-          <span className="text-gradient-neon">Sobre Mim?</span>
-        </motion.h2>
+    <section id="sobre" className="relative px-4">
+      {/* Sticky stage: title zooms out within this 150vh range */}
+      <div ref={ref} className="relative h-[150vh]">
+        <div className="sticky top-0 flex h-screen w-full items-center justify-center">
+          <motion.h2
+            style={{ scale, opacity: opacityTitle, filter }}
+            className="text-center text-5xl font-extrabold tracking-tight sm:text-7xl md:text-8xl"
+          >
+            <span className="text-gradient-neon">Sobre Mim?</span>
+          </motion.h2>
+        </div>
       </div>
 
-      {/* Content revealed after the zoom */}
-      <div className="relative z-10 mx-auto -mt-[40vh] max-w-3xl space-y-8">
+      {/* Content sits cleanly below the title — no overlap */}
+      <div className="relative z-10 mx-auto max-w-3xl space-y-8 pb-32">
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -190,6 +188,7 @@ function AboutSection() {
     </section>
   );
 }
+
 
 /* ───────────────────── Projects: Zig-Zag ───────────────────── */
 
