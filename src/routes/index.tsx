@@ -7,6 +7,17 @@ import {
   useInView,
   useReducedMotion,
 } from "framer-motion";
+import {
+  Github,
+  Linkedin,
+  Mail,
+  MessageCircle,
+  ArrowRight,
+  Code2,
+  Globe,
+  Workflow,
+  Quote,
+} from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -572,7 +583,7 @@ function ServicesSection() {
 
 function FooterCTA() {
   const whatsappUrl =
-    "https://wa.me/5500000000000?text=Ol%C3%A1%20Guilherme!%20Quero%20iniciar%20um%20projeto.";
+    "https://wa.me/5531994691715?text=Ol%C3%A1%20Guilherme!%20Quero%20iniciar%20um%20projeto.";
 
   return (
     <footer id="contato" className="relative overflow-hidden px-4 py-32">
@@ -622,8 +633,33 @@ function FooterCTA() {
           </a>
         </motion.div>
 
-        <div className="mt-16 flex items-center justify-center gap-8 text-sm text-muted-foreground">
+        <div className="mt-16 flex items-center justify-center gap-8 text-muted-foreground">
           <a
+            href="https://github.com/Guivieira26"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className="transition-colors hover:text-[color:var(--neon)]"
+          >
+            <Github className="h-5 w-5" />
+          </a>
+          <a
+            href="https://linkedin.com/in/guilherme-o-vieira/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className="transition-colors hover:text-[color:var(--neon)]"
+          >
+            <Linkedin className="h-5 w-5" />
+          </a>
+          <a
+            href="mailto:guigavieira26@gmail.com"
+            aria-label="E-mail"
+            className="transition-colors hover:text-[color:var(--neon)]"
+          >
+            <Mail className="h-5 w-5" />
+          </a>
+          {/* <a
             href="https://github.com"
             target="_blank"
             rel="noreferrer"
@@ -646,7 +682,7 @@ function FooterCTA() {
             className="transition hover:text-neon"
           >
             E-mail
-          </a>
+          </a> */}
         </div>
 
         <p className="mt-12 font-mono text-xs text-muted-foreground/70">
