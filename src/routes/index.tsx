@@ -133,7 +133,7 @@ function AboutSection() {
             style={{ scale, opacity: opacityTitle, filter }}
             className="text-center text-5xl font-extrabold tracking-tight sm:text-7xl md:text-8xl"
           >
-            <span className="text-gradient-neon">Sobre Mim?</span>
+            <span className="text-gradient-neon">Sobre Mim!</span>
           </motion.h2>
         </div>
       </div>
@@ -189,8 +189,7 @@ function AboutSection() {
   );
 }
 
-
-/* ───────────────────── Projects: Zig-Zag ───────────────────── */
+/* ------------------------------ PROJECTS --------------------------------- */
 
 type Project = {
   title: string;
@@ -203,109 +202,241 @@ const projects: Project[] = [
   {
     title: "Plataforma SaaS de Gestão",
     description:
-      "Dashboard completo para uma operação interna: relatórios em tempo real, controle de usuários e automações que economizam horas por semana.",
-    tech: ["React", "TypeScript", "Tailwind", "Node.js"],
-    accent: "from-[oklch(0.78_0.18_250)] to-[oklch(0.72_0.22_300)]",
+      "Dashboard interativo para gestão de clientes e métricas em tempo real, com gráficos dinâmicos e autenticação completa.",
+    tech: ["React", "TypeScript", "Tailwind", "Supabase"],
+    accent: "from-indigo-500/40 to-fuchsia-500/30",
   },
   {
-    title: "Site Institucional Premium",
+    title: "Site Institucional Animado",
     description:
-      "Landing page com scrollytelling para uma agência criativa. Foco total em performance, animações sob demanda e SEO técnico.",
-    tech: ["Next.js", "Framer Motion", "Tailwind"],
-    accent: "from-[oklch(0.72_0.22_300)] to-[oklch(0.78_0.18_250)]",
+      "Landing page com scrollytelling para uma agência criativa, com transições fluidas e foco em conversão.",
+    tech: ["Next.js", "GSAP", "Tailwind"],
+    accent: "from-cyan-500/40 to-blue-600/30",
   },
   {
-    title: "Automação de Atendimento",
+    title: "Automação de Relatórios",
     description:
-      "Bot integrado a WhatsApp e CRM que qualifica leads automaticamente e dispara fluxos personalizados por etapa do funil.",
-    tech: ["Node.js", "n8n", "Postgres"],
-    accent: "from-[oklch(0.78_0.18_250)] to-[oklch(0.85_0.15_180)]",
+      "Sistema serverless que coleta dados de APIs, gera relatórios em PDF e envia automaticamente por e-mail aos clientes.",
+    tech: ["Node.js", "Cloud Functions", "Puppeteer"],
+    accent: "from-violet-500/40 to-pink-500/30",
   },
 ];
 
-function ProjectRow({ project, index }: { project: Project; index: number }) {
-  const isReversed = index % 2 === 1;
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
-
-  const mediaFrom = isReversed ? 80 : -80;
-  const textFrom = isReversed ? -80 : 80;
-
-  return (
-    <div
-      ref={ref}
-      className={`grid items-center gap-10 md:grid-cols-2 md:gap-16 ${
-        isReversed ? "md:[&>*:first-child]:order-2" : ""
-      }`}
-    >
-      {/* Media */}
-      <motion.div
-        initial={{ opacity: 0, x: mediaFrom, filter: "blur(16px)" }}
-        animate={
-          inView
-            ? { opacity: 1, x: 0, filter: "blur(0px)" }
-            : { opacity: 0, x: mediaFrom, filter: "blur(16px)" }
-        }
-        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-        className="relative aspect-video w-full overflow-hidden rounded-2xl border border-border bg-card"
-      >
-        <div
-          className={`absolute inset-0 bg-gradient-to-br opacity-90 ${project.accent}`}
-        />
-        <div className="absolute inset-0 bg-grid opacity-40" />
-        <div className="relative flex h-full items-center justify-center">
-          <span className="font-mono text-5xl font-black text-background/80">
-            0{index + 1}
-          </span>
-        </div>
-      </motion.div>
-
-      {/* Text */}
-      <motion.div
-        initial={{ opacity: 0, x: textFrom }}
-        animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: textFrom }}
-        transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-        className="space-y-5"
-      >
-        <div className="font-mono text-xs uppercase tracking-[0.3em] text-neon">
-          Projeto / 0{index + 1}
-        </div>
-        <h3 className="text-3xl font-bold sm:text-4xl">{project.title}</h3>
-        <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">
-          {project.description}
-        </p>
-        <div className="flex flex-wrap gap-2 pt-2">
-          {project.tech.map((t) => (
-            <span
-              key={t}
-              className="rounded-md border border-border bg-card/60 px-3 py-1 font-mono text-xs text-muted-foreground"
-            >
-              {t}
-            </span>
-          ))}
-        </div>
-      </motion.div>
-    </div>
-  );
-}
-
+// old version
 function ProjectsSection() {
   return (
-    <section id="projetos" className="relative px-4 py-32 sm:py-40">
-      <div className="mx-auto mb-20 max-w-3xl text-center">
-        <p className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-neon">
-          // Portfolio
+    <section
+      id="projetos"
+      aria-label="Projetos em destaque"
+      className="relative mx-auto max-w-6xl px-4 py-32 sm:py-40"
+    >
+      <header className="mb-20 text-center">
+        <p className="font-mono text-xs uppercase tracking-[0.3em] text-[color:var(--neon)]">
+          // portfolio
         </p>
-        <h2 className="text-4xl font-bold sm:text-5xl">Projetos em destaque</h2>
-      </div>
-      <div className="mx-auto flex max-w-6xl flex-col gap-32">
+        <h2 className="mt-3 text-4xl sm:text-5xl font-extrabold tracking-tight">
+          Projetos em Destaque
+        </h2>
+      </header>
+
+      <div className="space-y-28 sm:space-y-40">
         {projects.map((p, i) => (
-          <ProjectRow key={p.title} project={p} index={i} />
+          <ProjectRow key={p.title} project={p} reversed={i % 2 === 1} />
         ))}
       </div>
     </section>
   );
 }
+
+function ProjectRow({ project, reversed }: { project: Project; reversed: boolean }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start 85%", "end 30%"],
+  });
+  const mediaX = useTransform(scrollYProgress, [0, 0.6], [reversed ? 120 : -120, 0]);
+  const textX = useTransform(scrollYProgress, [0, 0.6], [reversed ? -120 : 120, 0]);
+  const blur = useTransform(scrollYProgress, [0, 0.6], [12, 0]);
+  const filter = useTransform(blur, (v) => `blur(${v}px)`);
+  const opacity = useTransform(scrollYProgress, [0, 0.4], [0, 1]);
+
+  return (
+    <div
+      ref={ref}
+      className={`grid items-center gap-10 md:grid-cols-2 ${
+        reversed ? "md:[&>*:first-child]:order-2" : ""
+      }`}
+    >
+      <motion.div style={{ x: mediaX, filter, opacity }}>
+        <div
+          className={`relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-border bg-gradient-to-br ${project.accent} p-px`}
+        >
+          <div className="flex h-full w-full items-center justify-center rounded-[15px] bg-card/80 backdrop-blur-md">
+            {/* mockup placeholder */}
+            <div className="flex h-[80%] w-[85%] flex-col overflow-hidden rounded-lg border border-border bg-background/80 shadow-2xl">
+              <div className="flex items-center gap-1.5 border-b border-border px-3 py-2">
+                <span className="h-2 w-2 rounded-full bg-red-500/70" />
+                <span className="h-2 w-2 rounded-full bg-yellow-500/70" />
+                <span className="h-2 w-2 rounded-full bg-green-500/70" />
+              </div>
+              <div className="grid flex-1 grid-cols-6 gap-2 p-3">
+                <div className="col-span-2 rounded-md bg-[color:var(--neon)]/10" />
+                <div className="col-span-4 space-y-2">
+                  <div className="h-3 w-3/4 rounded bg-foreground/10" />
+                  <div className="h-3 w-1/2 rounded bg-foreground/10" />
+                  <div className="mt-4 h-16 rounded-md bg-[color:var(--neon)]/15" />
+                  <div className="grid grid-cols-3 gap-2">
+                    <div className="h-10 rounded bg-foreground/5" />
+                    <div className="h-10 rounded bg-foreground/5" />
+                    <div className="h-10 rounded bg-foreground/5" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+
+      <motion.div style={{ x: textX, opacity }} className="space-y-5">
+        <p className="font-mono text-xs text-[color:var(--neon)]">
+          #{String(projects.indexOf(project) + 1).padStart(2, "0")}
+        </p>
+        <h3 className="text-2xl sm:text-3xl font-bold tracking-tight">
+          {project.title}
+        </h3>
+        <p className="text-muted-foreground leading-relaxed">{project.description}</p>
+        <ul className="flex flex-wrap gap-2 pt-1">
+          {project.tech.map((t) => (
+            <li
+              key={t}
+              className="rounded-full border border-border bg-card/60 px-3 py-1 font-mono text-xs text-foreground/80"
+            >
+              {t}
+            </li>
+          ))}
+        </ul>
+      </motion.div>
+    </div>
+  );
+}
+
+
+// /* ───────────────────── Projects: Zig-Zag ───────────────────── */ OLD VERSION
+
+// type Project = {
+//   title: string;
+//   description: string;
+//   tech: string[];
+//   accent: string;
+// };
+
+// const projects: Project[] = [
+//   {
+//     title: "Plataforma SaaS de Gestão",
+//     description:
+//       "Dashboard completo para uma operação interna: relatórios em tempo real, controle de usuários e automações que economizam horas por semana.",
+//     tech: ["React", "TypeScript", "Tailwind", "Node.js"],
+//     accent: "from-[oklch(0.78_0.18_250)] to-[oklch(0.72_0.22_300)]",
+//   },
+//   {
+//     title: "Site Institucional Premium",
+//     description:
+//       "Landing page com scrollytelling para uma agência criativa. Foco total em performance, animações sob demanda e SEO técnico.",
+//     tech: ["Next.js", "Framer Motion", "Tailwind"],
+//     accent: "from-[oklch(0.72_0.22_300)] to-[oklch(0.78_0.18_250)]",
+//   },
+//   {
+//     title: "Automação de Atendimento",
+//     description:
+//       "Bot integrado a WhatsApp e CRM que qualifica leads automaticamente e dispara fluxos personalizados por etapa do funil.",
+//     tech: ["Node.js", "n8n", "Postgres"],
+//     accent: "from-[oklch(0.78_0.18_250)] to-[oklch(0.85_0.15_180)]",
+//   },
+// ];
+
+// function ProjectRow({ project, index }: { project: Project; index: number }) {
+//   const isReversed = index % 2 === 1;
+//   const ref = useRef<HTMLDivElement>(null);
+//   const inView = useInView(ref, { once: true, margin: "-100px" });
+
+//   const mediaFrom = isReversed ? 80 : -80;
+//   const textFrom = isReversed ? -80 : 80;
+
+//   return (
+//     <div
+//       ref={ref}
+//       className={`grid items-center gap-10 md:grid-cols-2 md:gap-16 ${
+//         isReversed ? "md:[&>*:first-child]:order-2" : ""
+//       }`}
+//     >
+//       {/* Media */}
+//       <motion.div
+//         initial={{ opacity: 0, x: mediaFrom, filter: "blur(16px)" }}
+//         animate={
+//           inView
+//             ? { opacity: 1, x: 0, filter: "blur(0px)" }
+//             : { opacity: 0, x: mediaFrom, filter: "blur(16px)" }
+//         }
+//         transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+//         className="relative aspect-video w-full overflow-hidden rounded-2xl border border-border bg-card"
+//       >
+//         <div
+//           className={`absolute inset-0 bg-gradient-to-br opacity-90 ${project.accent}`}
+//         />
+//         <div className="absolute inset-0 bg-grid opacity-40" />
+//         <div className="relative flex h-full items-center justify-center">
+//           <span className="font-mono text-5xl font-black text-background/80">
+//             0{index + 1}
+//           </span>
+//         </div>
+//       </motion.div>
+
+//       {/* Text */}
+//       <motion.div
+//         initial={{ opacity: 0, x: textFrom }}
+//         animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: textFrom }}
+//         transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+//         className="space-y-5"
+//       >
+//         <div className="font-mono text-xs uppercase tracking-[0.3em] text-neon">
+//           Projeto / 0{index + 1}
+//         </div>
+//         <h3 className="text-3xl font-bold sm:text-4xl">{project.title}</h3>
+//         <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">
+//           {project.description}
+//         </p>
+//         <div className="flex flex-wrap gap-2 pt-2">
+//           {project.tech.map((t) => (
+//             <span
+//               key={t}
+//               className="rounded-md border border-border bg-card/60 px-3 py-1 font-mono text-xs text-muted-foreground"
+//             >
+//               {t}
+//             </span>
+//           ))}
+//         </div>
+//       </motion.div>
+//     </div>
+//   );
+// }
+
+// function ProjectsSection() {
+//   return (
+//     <section id="projetos" className="relative px-4 py-32 sm:py-40">
+//       <div className="mx-auto mb-20 max-w-3xl text-center">
+//         <p className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-neon">
+//           // Portfolio
+//         </p>
+//         <h2 className="text-4xl font-bold sm:text-5xl">Projetos em destaque</h2>
+//       </div>
+//       <div className="mx-auto flex max-w-6xl flex-col gap-32">
+//         {projects.map((p, i) => (
+//           <ProjectRow key={p.title} project={p} index={i} />
+//         ))}
+//       </div>
+//     </section>
+//   );
+// }
 
 /* ───────────────────── Services & Testimonials ───────────────────── */
 
