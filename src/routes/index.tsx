@@ -18,6 +18,7 @@ import {
   Workflow,
   Quote,
 } from "lucide-react";
+import guilhermeAsset from "@/assets/guilherme.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -151,6 +152,23 @@ function AboutSection() {
 
       {/* Content sits cleanly below the title — no overlap */}
       <div className="relative z-10 mx-auto max-w-3xl space-y-8 pb-32">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.85 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="flex justify-center"
+        >
+          <div className="avatar-tech">
+            <img
+              src={guilhermeAsset.url}
+              alt="Guilherme em seu setup de desenvolvimento"
+              loading="lazy"
+              className="block h-44 w-44 rounded-full object-cover sm:h-56 sm:w-56"
+            />
+          </div>
+        </motion.div>
+
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
