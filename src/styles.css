@@ -133,3 +133,73 @@
   background-size: 48px 48px;
   mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
 }
+
+/* Global radial cursor spotlight */
+.cursor-glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0;
+  transition: opacity 300ms ease;
+  background: radial-gradient(
+    420px circle at var(--mx, 50%) var(--my, 50%),
+    oklch(0.78 0.18 250 / 14%),
+    oklch(0.72 0.22 300 / 6%) 32%,
+    transparent 65%
+  );
+  mix-blend-mode: screen;
+}
+
+/* Tech-style avatar ring with rotating conic glow */
+@keyframes avatar-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes avatar-pulse {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.08); }
+}
+
+.avatar-tech {
+  position: relative;
+  display: inline-block;
+  border-radius: 9999px;
+  padding: 4px;
+  isolation: isolate;
+}
+.avatar-tech::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 9999px;
+  padding: 2px;
+  background: conic-gradient(
+    from 0deg,
+    var(--neon),
+    var(--violet-glow),
+    transparent 55%,
+    var(--neon)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  animation: avatar-spin 8s linear infinite;
+  z-index: -1;
+}
+.avatar-tech::after {
+  content: "";
+  position: absolute;
+  inset: -22px;
+  border-radius: 9999px;
+  background: radial-gradient(
+    closest-side,
+    var(--neon-soft),
+    transparent 70%
+  );
+  filter: blur(18px);
+  animation: avatar-pulse 4s ease-in-out infinite;
+  z-index: -2;
+  pointer-events: none;
+}
