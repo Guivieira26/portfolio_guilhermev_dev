@@ -623,12 +623,14 @@ function FooterCTA() {
             rel="noreferrer"
             className="cta-glow group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-neon to-violet-glow px-8 py-4 text-base font-semibold text-background transition-transform hover:scale-105"
           >
-            Fale comigo no WhatsApp
+            <MessageCircle className="h-5 w-5" />
+            Fale Comigo no WhatsApp
+            <ArrowRight className="h-4 w-4" />
             <span
               aria-hidden
               className="transition-transform group-hover:translate-x-1"
             >
-              →
+              
             </span>
           </a>
         </motion.div>
