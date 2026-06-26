@@ -6,10 +6,26 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
+// Lovable CDN host used to serve uploaded assets (/__l5e/assets-v1/...).
+// On Lovable preview/published the platform serves this path directly.
+// Locally (bun run dev) the path 404s, so we proxy it to the project's
+// preview host so videos/images load identically in both environments.
+const LOVABLE_ASSET_HOST =
+  "https://id-preview--adbe1bf4-09ba-4030-bf4b-953bae658cc2.lovable.app";
+
 export default defineConfig({
   tanstackStart: {
-    // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-    // nitro/vite builds from this
     server: { entry: "server" },
+  },
+  vite: {
+    server: {
+      proxy: {
+        "/__l5e": {
+          target: LOVABLE_ASSET_HOST,
+          changeOrigin: true,
+          secure: true,
+        },
+      },
+    },
   },
 });
