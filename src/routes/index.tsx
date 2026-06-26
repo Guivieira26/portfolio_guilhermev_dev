@@ -338,8 +338,6 @@ function ProjectRow({ project, reversed }: { project: Project; reversed: boolean
               />
             </div>
           </div>
-          </div>
-        </div>
       </motion.div>
 
       <motion.div style={{ x: textX, opacity }} className="space-y-5">
