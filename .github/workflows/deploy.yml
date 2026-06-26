@@ -1,9 +1,9 @@
-name: Deploy Portfolio to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches:
-      - main # ou master, mude se a sua branch principal tiver outro nome
+    branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -15,35 +15,35 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v1
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          bun-version: latest
+          node-version: 20
 
       - name: Install dependencies
-        run: bun install
+        run: npm install
 
-      - name: Build project
-        run: bun run build
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
+      - name: Build
+        run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # O TanStack Start/Nitro joga o build estático dentro desta pasta pública
-          path: '.output/public'
+          path: ./dist
 
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
