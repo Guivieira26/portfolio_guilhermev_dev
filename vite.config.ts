@@ -19,7 +19,7 @@ export default defineConfig({
   },
   vite: {
     // 1. ADICIONE ESSA LINHA ABAIXO (Troque 'nome-do-seu-repositorio' pelo nome real no GitHub)
-    base: "/type-scroll-reveal/", 
+    base: "/nome-do-seu-repositorio/", 
     
     server: {
       proxy: {
