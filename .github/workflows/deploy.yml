@@ -46,7 +46,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist  # vamos corrigir depois de ver o debug
+          path: ./output/public  # vamos corrigir depois de ver o debug
 
   deploy:
     needs: build
