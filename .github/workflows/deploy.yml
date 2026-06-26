@@ -32,10 +32,21 @@ jobs:
       - name: Build
         run: bun run build
 
+      - name: Debug - listar arquivos gerados
+        run: |
+          echo "=== raiz ==="
+          ls -la
+          echo "=== dist (se existir) ==="
+          ls -la dist/ 2>/dev/null || echo "dist/ não existe"
+          echo "=== .output (se existir) ==="
+          ls -la .output/ 2>/dev/null || echo ".output/ não existe"
+          echo "=== .output/public (se existir) ==="
+          ls -la .output/public/ 2>/dev/null || echo ".output/public/ não existe"
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./public
+          path: ./dist  # vamos corrigir depois de ver o debug
 
   deploy:
     needs: build
