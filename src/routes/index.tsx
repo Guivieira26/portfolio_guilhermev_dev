@@ -18,7 +18,7 @@ import {
   Workflow,
   Quote,
 } from "lucide-react";
-import guilhermeAsset from "@/assets/guilherme.png.asset.json";
+import guilhermeAsset from "@/assets/guilherme.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -134,7 +134,7 @@ function AboutSection() {
   const blur = useTransform(scrollYProgress, [0, 0.5, 1], [20, 0, 0]);
   const filter = useTransform(blur, (b) => `blur(${b}px)`);
 
-  const skills = ["Proativo", "Autodidata", "Trabalho em Equipe", "Criatividade"];
+  const skills = ["Proativo", "Autodidata","Criatividade", "Resolução de Problemas", "Trabalho em Equipe"];
 
   return (
     <section id="sobre" className="relative px-4">
@@ -161,7 +161,7 @@ function AboutSection() {
         >
           <div className="avatar-tech">
             <img
-              src={guilhermeAsset.url}
+              src={guilhermeAsset}
               alt="Guilherme em seu setup de desenvolvimento"
               loading="lazy"
               className="block h-44 w-44 rounded-full object-cover sm:h-56 sm:w-56"
@@ -176,11 +176,19 @@ function AboutSection() {
           transition={{ duration: 0.7 }}
           className="text-lg leading-relaxed text-muted-foreground sm:text-xl"
         >
-          Minha trajetória começou na faculdade, onde mergulhei no curso de
-          tecnologia e descobri uma paixão real por construir coisas na web. Do
-          primeiro <span className="font-mono text-neon">Hello World</span> aos
-          projetos completos para clientes, passei a transformar ideias em
-          interfaces que as pessoas realmente gostam de usar.
+          Minha trajetória começou na faculdade de Ciência da Computação, 
+          onde mergulhei de cabeça no ecossistema de tecnologia e descobri 
+          uma paixão real por construir soluções robustas. Do primeiro 
+          <span className="font-mono text-neon"> Hello World </span>até o desenvolvimento 
+          de sistemas completos, transformei essa paixão em uma carreira focada em desenvolvimento Full Stack.<br />
+          <br />
+          Ao longo da minha jornada, transitei por empresas de tecnologia e pelo setor público, 
+          onde entendi que programar vai muito além de escrever código limpo: é sobre resolver gargalos de negócios. 
+          Especializei-me em criar APIs eficientes, arquiteturas de bancos de dados sólidas e interfaces funcionais que realmente facilita a vida das pessoas.<br />
+          <br />
+          Sempre em busca de inovação, venho explorando a convergência entre o desenvolvimento web tradicional e a Inteligência Artificial aplicada em negócios. 
+          Seja integrando modelos de linguagem locais (LLMs) para automatizar processos ou aplicando Visão Computacional para criar novas formas de acessibilidade, 
+          meu foco é usar a tecnologia para gerar autonomia e economia.
         </motion.p>
         <motion.p
           initial={{ opacity: 0, y: 30 }}
@@ -229,26 +237,26 @@ type Project = {
 
 const projects: Project[] = [
   {
-    title: "Plataforma SaaS de Gestão",
+    title: "Dashboard Inteligente",
     description:
-      "Dashboard interativo para gestão de clientes e métricas em tempo real, com gráficos dinâmicos e autenticação completa.",
-    tech: ["React", "TypeScript", "Tailwind", "Supabase"],
+      "Dashboard analítico integrado a um modelo de IA local para previsão de margem de lucro baseado na flutuação do dólar e investimentos em marketing. O projeto utiliza algoritmos de Machine Learning para análise preditiva e um LLM open-source focado em insights estratégicos, garantindo privacidade de dados e custo zero com tokens de APIs externas.",
+    tech: ["Python", "Scikit-Learn", "Ollama", "Pandas", "NumPy", "Streamlit/Plotly"],
     accent: "from-indigo-500/40 to-fuchsia-500/30",
   },
   {
-    title: "Site Institucional Animado",
+    title: "Estoque AI",
     description:
-      "Landing page com scrollytelling para uma agência criativa, com transições fluidas e foco em conversão.",
-    tech: ["Next.js", "GSAP", "Tailwind"],
+      "Solução inteligente de automação de inventário desenvolvida sob medida para o cliente. O aplicativo permite a gestão de estoque automatizada a partir da foto de uma nota fiscal: o sistema extrai os dados via OCR, processa as informações estruturadas usando IA local (LLM) e atualiza automaticamente produtos, quantidades e preços, eliminando o trabalho manual.",
+    tech: ["React Native", "Python", "FastAPI/Flask", "EasyOCR", "Ollama", "PostgreSQL"],
     accent: "from-cyan-500/40 to-blue-600/30",
   },
   {
-    title: "Automação de Relatórios",
+    title: "Visão Computacional e Interface Humano-Computador",
     description:
-      "Sistema serverless que coleta dados de APIs, gera relatórios em PDF e envia automaticamente por e-mail aos clientes.",
-    tech: ["Node.js", "Cloud Functions", "Puppeteer"],
+      "Aplicação de Visão Computacional focada em acessibilidade e interatividade. O sistema realiza o rastreamento em tempo real de marcos faciais (como a ponta do nariz) e gestos manuais para traduzir movimentos físicos em comandos de hardware (GamePad/Teclado), permitindo o controle do computador sem a necessidade de toque físico.",
+    tech: ["Python", "MediaPipe", "OpenCV", "PyAutoGUI / Pygame"],
     accent: "from-violet-500/40 to-pink-500/30",
-  },
+  }
 ];
 
 // old version
@@ -471,43 +479,49 @@ function ProjectRow({ project, reversed }: { project: Project; reversed: boolean
 
 const services = [
   {
-    title: "Sites institucionais",
-    desc: "Presenças digitais bem desenhadas, rápidas e otimizadas para conversão.",
+    title: "Automações",
+    desc: "Integrações entre ferramentas para eliminar trabalho repetitivo do time.",
   },
   {
     title: "Sistemas web",
     desc: "Aplicações sob medida — dashboards, áreas de cliente e ferramentas internas.",
   },
   {
-    title: "Automações",
-    desc: "Integrações entre ferramentas para eliminar trabalho repetitivo do time.",
+    title: "Sites institucionais",
+    desc: "Presenças digitais bem desenhadas, rápidas e otimizadas para conversão.",
   },
 ];
 
 const testimonials = [
   {
-    name: "Carla M.",
-    role: "Founder, Studio Norte",
+    name: "Jean P.",
+    role: "Dono de Oficina Mecânica",
+    quote:
+      "Ele me ofereceu mais do que a solução que eu precisava, conseguiu automatizar processos que nem sabia que existiam e me fez economizar muito tempo.",
+  },
+  {
+    name: "Devis C.",
+    role: "Fisioterapeuta e Empreendedor",
     quote:
       "Entregou muito além do combinado. O site ficou exatamente como imaginei e o processo foi tranquilo do começo ao fim.",
   },
-  {
-    name: "Rafael S.",
-    role: "Product Lead",
-    quote:
-      "Profissional raro: técnico, comunicativo e proativo. Resolveu problemas que nem sabíamos que tínhamos.",
-  },
+  // {
+  //   name: "Felipe",
+  //   role: "Orientador de TCC",
+  //   quote:
+  //     "",
+  // },
   {
     name: "Marina P.",
-    role: "Colega de equipe",
+    role: "Colega de Equipe",
     quote:
       "Sempre disposto a ajudar e propor ideias. Faz diferença em qualquer time que entra.",
   },
   {
     name: "João V.",
-    role: "Cliente freelancer",
+    role: "Dono de Hambuergueria",
     quote:
-      "Automatizou todo nosso fluxo de atendimento. Hoje respondemos em minutos o que antes levava horas.",
+      "Automatizou todo nosso fluxo de atendimento no WhatsApp. Hoje respondemos em minutos o que antes levava horas.",
   },
 ];
 
