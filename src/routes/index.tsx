@@ -19,6 +19,9 @@ import {
   Quote,
 } from "lucide-react";
 import guilhermeAsset from "@/assets/guilherme.png";
+import dashboardVideo from "@/assets/dashboard_inteligente.mp4.asset.json";
+import estoqueVideo from "@/assets/EstoqueAI.mp4.asset.json";
+import visaoVideo from "@/assets/computacao_visual.mp4.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
