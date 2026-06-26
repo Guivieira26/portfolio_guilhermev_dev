@@ -18,6 +18,9 @@ export default defineConfig({
     server: { entry: "server" },
   },
   vite: {
+    // 1. ADICIONE ESSA LINHA ABAIXO (Troque 'nome-do-seu-repositorio' pelo nome real no GitHub)
+    base: "/nome-do-seu-repositorio/", 
+    
     server: {
       proxy: {
         "/__l5e": {
