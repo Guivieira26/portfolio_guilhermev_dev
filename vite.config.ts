@@ -18,8 +18,8 @@ export default defineConfig({
     server: { entry: "server" },
   },
   vite: {
-    // 1. ADICIONE ESSA LINHA ABAIXO (Troque 'nome-do-seu-repositorio' pelo nome real no GitHub)
-    base: "/nome-do-seu-repositorio/", 
+    // Base path para GitHub Pages servido em https://<user>.github.io/portfolio_guilhermev_dev/
+    base: "/portfolio_guilhermev_dev/",
     
     server: {
       proxy: {
