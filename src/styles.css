@@ -82,6 +82,29 @@
   color: transparent;
 }
 
+@utility neon-glow {
+  filter:
+    drop-shadow(0 0 8px var(--neon-soft))
+    drop-shadow(0 0 24px var(--neon-soft))
+    drop-shadow(0 0 48px oklch(0.72 0.22 300 / 35%));
+  animation: neon-flicker 3.5s ease-in-out infinite;
+}
+
+@keyframes neon-flicker {
+  0%, 100% {
+    filter:
+      drop-shadow(0 0 8px var(--neon-soft))
+      drop-shadow(0 0 24px var(--neon-soft))
+      drop-shadow(0 0 48px oklch(0.72 0.22 300 / 35%));
+  }
+  50% {
+  filter:
+    drop-shadow(0 0 14px var(--neon))
+    drop-shadow(0 0 36px var(--neon-soft))
+    drop-shadow(0 0 70px oklch(0.72 0.22 300 / 55%));
+  }
+}
+
 @utility glow-neon {
   box-shadow:
     0 0 0 1px var(--neon-soft),

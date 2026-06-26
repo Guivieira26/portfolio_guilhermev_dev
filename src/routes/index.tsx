@@ -19,6 +19,9 @@ import {
   Quote,
 } from "lucide-react";
 import guilhermeAsset from "@/assets/guilherme.png";
+import dashboardVideo from "@/assets/dashboard_inteligente.mp4.asset.json";
+import estoqueVideo from "@/assets/EstoqueAI.mp4.asset.json";
+import visaoVideo from "@/assets/computacao_visual.mp4.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -145,7 +148,7 @@ function AboutSection() {
             style={{ scale, opacity: opacityTitle, filter }}
             className="text-center text-5xl font-extrabold tracking-tight sm:text-7xl md:text-8xl"
           >
-            <span className="text-gradient-neon">Sobre Mim!</span>
+            <span className="text-gradient-neon neon-glow">Sobre Mim!</span>
           </motion.h2>
         </div>
       </div>
@@ -233,6 +236,7 @@ type Project = {
   description: string;
   tech: string[];
   accent: string;
+  video: string;
 };
 
 const projects: Project[] = [
@@ -242,6 +246,7 @@ const projects: Project[] = [
       "Dashboard analítico integrado a um modelo de IA local para previsão de margem de lucro baseado na flutuação do dólar e investimentos em marketing. O projeto utiliza algoritmos de Machine Learning para análise preditiva e um LLM open-source focado em insights estratégicos, garantindo privacidade de dados e custo zero com tokens de APIs externas.",
     tech: ["Python", "Scikit-Learn", "Ollama", "Pandas", "NumPy", "Streamlit/Plotly"],
     accent: "from-indigo-500/40 to-fuchsia-500/30",
+    video: dashboardVideo.url,
   },
   {
     title: "Estoque AI",
@@ -249,6 +254,7 @@ const projects: Project[] = [
       "Solução inteligente de automação de inventário desenvolvida sob medida para o cliente. O aplicativo permite a gestão de estoque automatizada a partir da foto de uma nota fiscal: o sistema extrai os dados via OCR, processa as informações estruturadas usando IA local (LLM) e atualiza automaticamente produtos, quantidades e preços, eliminando o trabalho manual.",
     tech: ["React Native", "Python", "FastAPI/Flask", "EasyOCR", "Ollama", "PostgreSQL"],
     accent: "from-cyan-500/40 to-blue-600/30",
+    video: estoqueVideo.url,
   },
   {
     title: "Visão Computacional e Interface Humano-Computador",
@@ -256,6 +262,7 @@ const projects: Project[] = [
       "Aplicação de Visão Computacional focada em acessibilidade e interatividade. O sistema realiza o rastreamento em tempo real de marcos faciais (como a ponta do nariz) e gestos manuais para traduzir movimentos físicos em comandos de hardware (GamePad/Teclado), permitindo o controle do computador sem a necessidade de toque físico.",
     tech: ["Python", "MediaPipe", "OpenCV", "PyAutoGUI / Pygame"],
     accent: "from-violet-500/40 to-pink-500/30",
+    video: visaoVideo.url,
   }
 ];
 
@@ -305,33 +312,32 @@ function ProjectRow({ project, reversed }: { project: Project; reversed: boolean
       }`}
     >
       <motion.div style={{ x: mediaX, filter, opacity }}>
-        <div
-          className={`relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-border bg-gradient-to-br ${project.accent} p-px`}
-        >
-          <div className="flex h-full w-full items-center justify-center rounded-[15px] bg-card/80 backdrop-blur-md">
-            {/* mockup placeholder */}
-            <div className="flex h-[80%] w-[85%] flex-col overflow-hidden rounded-lg border border-border bg-background/80 shadow-2xl">
-              <div className="flex items-center gap-1.5 border-b border-border px-3 py-2">
-                <span className="h-2 w-2 rounded-full bg-red-500/70" />
-                <span className="h-2 w-2 rounded-full bg-yellow-500/70" />
-                <span className="h-2 w-2 rounded-full bg-green-500/70" />
+          <div
+            className={`relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-border bg-gradient-to-br ${project.accent} p-px`}
+          >
+            <div className="flex h-full w-full flex-col overflow-hidden rounded-[15px] border border-border bg-background/90 shadow-2xl backdrop-blur-md">
+              {/* Mac title bar */}
+              <div className="flex items-center gap-1.5 border-b border-border bg-card/80 px-3 py-2">
+                <span className="h-3 w-3 rounded-full bg-red-500/80" />
+                <span className="h-3 w-3 rounded-full bg-yellow-500/80" />
+                <span className="h-3 w-3 rounded-full bg-green-500/80" />
+                <span className="ml-3 font-mono text-[10px] text-muted-foreground">
+                  {project.title}
+                </span>
               </div>
-              <div className="grid flex-1 grid-cols-6 gap-2 p-3">
-                <div className="col-span-2 rounded-md bg-[color:var(--neon)]/10" />
-                <div className="col-span-4 space-y-2">
-                  <div className="h-3 w-3/4 rounded bg-foreground/10" />
-                  <div className="h-3 w-1/2 rounded bg-foreground/10" />
-                  <div className="mt-4 h-16 rounded-md bg-[color:var(--neon)]/15" />
-                  <div className="grid grid-cols-3 gap-2">
-                    <div className="h-10 rounded bg-foreground/5" />
-                    <div className="h-10 rounded bg-foreground/5" />
-                    <div className="h-10 rounded bg-foreground/5" />
-                  </div>
-                </div>
-              </div>
+              {/* Video — eternal loop, muted, autoplay, no controls */}
+              <video
+                src={project.video}
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
+                aria-label={`Demonstração do projeto ${project.title}`}
+                className="h-full w-full flex-1 object-cover"
+              />
             </div>
           </div>
-        </div>
       </motion.div>
 
       <motion.div style={{ x: textX, opacity }} className="space-y-5">
