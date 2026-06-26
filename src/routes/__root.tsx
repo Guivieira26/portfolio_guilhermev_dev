@@ -10,6 +10,7 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import iconAsset from "@/assets/icon.png";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { CursorGlow } from "../components/CursorGlow";
 
@@ -78,15 +79,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Guilherme — Desenvolvedor Front-end & Freelancer" },
+      { title: "Guilherme — Desenvolvedor" },
       { name: "description", content: "Portfólio interativo de Guilherme: desenvolvedor front-end criando sites, sistemas web e automações sob medida." },
       { name: "author", content: "Guilherme" },
-      { property: "og:title", content: "Guilherme — Desenvolvedor Front-end & Freelancer" },
+      { property: "og:title", content: "Guilherme — Desenvolvedor" },
       { property: "og:description", content: "Portfólio interativo com projetos, serviços e depoimentos." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
+      { rel: "icon", type: "image/png", href: iconAsset },
+      { rel: "apple-touch-icon", href: iconAsset },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {

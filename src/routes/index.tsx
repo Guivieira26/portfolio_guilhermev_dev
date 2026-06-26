@@ -22,13 +22,13 @@ const publicVideoUrl = (fileName: string) =>
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Guilherme — Desenvolvedor Front-end" },
+      { title: "Guilherme — Desenvolvedor" },
       {
         name: "description",
         content:
           "Portfólio interativo de Guilherme: sites, sistemas web e automações com design moderno e foco em performance.",
       },
-      { property: "og:title", content: "Guilherme — Desenvolvedor Front-end" },
+      { property: "og:title", content: "Guilherme — Desenvolvedor" },
       {
         property: "og:description",
         content: "Portfólio interativo com projetos, serviços e depoimentos.",
