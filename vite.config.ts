@@ -15,7 +15,7 @@ const LOVABLE_ASSET_HOST =
 
 export default defineConfig({
   tanstackStart: {
-    server: { entry: "server" },
+    server: { preset: "static" }, // gera output estático
   },
   vite: {
     // Base path para GitHub Pages servido em https://<user>.github.io/portfolio_guilhermev_dev/
