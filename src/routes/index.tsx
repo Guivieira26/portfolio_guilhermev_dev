@@ -148,7 +148,7 @@ function AboutSection() {
             style={{ scale, opacity: opacityTitle, filter }}
             className="text-center text-5xl font-extrabold tracking-tight sm:text-7xl md:text-8xl"
           >
-            <span className="text-gradient-neon">Sobre Mim!</span>
+            <span className="text-gradient-neon neon-glow">Sobre Mim!</span>
           </motion.h2>
         </div>
       </div>
