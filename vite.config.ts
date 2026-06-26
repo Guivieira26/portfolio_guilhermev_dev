@@ -18,9 +18,7 @@ export default defineConfig({
     server: { preset: "static" }, // gera output estático
   },
   vite: {
-    // Base path para GitHub Pages servido em https://<user>.github.io/portfolio_guilhermev_dev/
-    base: "/portfolio_guilhermev_dev/",
-    
+       
     server: {
       proxy: {
         "/__l5e": {
