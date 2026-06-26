@@ -23,6 +23,12 @@ import dashboardVideo from "@/assets/dashboard_inteligente.mp4.asset.json";
 import estoqueVideo from "@/assets/EstoqueAI.mp4.asset.json";
 import visaoVideo from "@/assets/computacao_visual.mp4.asset.json";
 
+// Vídeos ficam no CDN da Lovable (não cabem no repo do GitHub).
+// Prefixamos com o host absoluto para funcionar tanto no preview Lovable
+// quanto no GitHub Pages (que não tem o proxy /__l5e configurado).
+const LOVABLE_CDN = "https://id-preview--adbe1bf4-09ba-4030-bf4b-953bae658cc2.lovable.app";
+const cdnUrl = (path: string) => `${LOVABLE_CDN}${path}`;
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
