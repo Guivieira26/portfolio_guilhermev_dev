@@ -252,7 +252,7 @@ const projects: Project[] = [
       "Dashboard analítico integrado a um modelo de IA local para previsão de margem de lucro baseado na flutuação do dólar e investimentos em marketing. O projeto utiliza algoritmos de Machine Learning para análise preditiva e um LLM open-source focado em insights estratégicos, garantindo privacidade de dados e custo zero com tokens de APIs externas.",
     tech: ["Python", "Scikit-Learn", "Ollama", "Pandas", "NumPy", "Streamlit/Plotly"],
     accent: "from-indigo-500/40 to-fuchsia-500/30",
-    video: dashboardVideo.url,
+    video: cdnUrl(dashboardVideo.url),
   },
   {
     title: "Estoque AI",
@@ -260,7 +260,7 @@ const projects: Project[] = [
       "Solução inteligente de automação de inventário desenvolvida sob medida para o cliente. O aplicativo permite a gestão de estoque automatizada a partir da foto de uma nota fiscal: o sistema extrai os dados via OCR, processa as informações estruturadas usando IA local (LLM) e atualiza automaticamente produtos, quantidades e preços, eliminando o trabalho manual.",
     tech: ["React Native", "Python", "FastAPI/Flask", "EasyOCR", "Ollama", "PostgreSQL"],
     accent: "from-cyan-500/40 to-blue-600/30",
-    video: estoqueVideo.url,
+    video: cdnUrl(estoqueVideo.url),
   },
   {
     title: "Visão Computacional e Interface Humano-Computador",
@@ -268,7 +268,7 @@ const projects: Project[] = [
       "Aplicação de Visão Computacional focada em acessibilidade e interatividade. O sistema realiza o rastreamento em tempo real de marcos faciais (como a ponta do nariz) e gestos manuais para traduzir movimentos físicos em comandos de hardware (GamePad/Teclado), permitindo o controle do computador sem a necessidade de toque físico.",
     tech: ["Python", "MediaPipe", "OpenCV", "PyAutoGUI / Pygame"],
     accent: "from-violet-500/40 to-pink-500/30",
-    video: visaoVideo.url,
+    video: cdnUrl(visaoVideo.url),
   }
 ];
 
