@@ -13,21 +13,11 @@ import {
   Mail,
   MessageCircle,
   ArrowRight,
-  Code2,
-  Globe,
-  Workflow,
-  Quote,
 } from "lucide-react";
 import guilhermeAsset from "@/assets/guilherme.png";
-import dashboardVideo from "@/assets/dashboard_inteligente.mp4.asset.json";
-import estoqueVideo from "@/assets/EstoqueAI.mp4.asset.json";
-import visaoVideo from "@/assets/computacao_visual.mp4.asset.json";
 
-// Vídeos ficam no CDN da Lovable (não cabem no repo do GitHub).
-// Prefixamos com o host absoluto para funcionar tanto no preview Lovable
-// quanto no GitHub Pages (que não tem o proxy /__l5e configurado).
-const LOVABLE_CDN = "https://id-preview--adbe1bf4-09ba-4030-bf4b-953bae658cc2.lovable.app";
-const cdnUrl = (path: string) => `${LOVABLE_CDN}${path}`;
+const publicVideoUrl = (fileName: string) =>
+  encodeURI(`${import.meta.env.BASE_URL}videos/${fileName}`);
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -252,7 +242,7 @@ const projects: Project[] = [
       "Dashboard analítico integrado a um modelo de IA local para previsão de margem de lucro baseado na flutuação do dólar e investimentos em marketing. O projeto utiliza algoritmos de Machine Learning para análise preditiva e um LLM open-source focado em insights estratégicos, garantindo privacidade de dados e custo zero com tokens de APIs externas.",
     tech: ["Python", "Scikit-Learn", "Ollama", "Pandas", "NumPy", "Streamlit/Plotly"],
     accent: "from-indigo-500/40 to-fuchsia-500/30",
-    video: cdnUrl(dashboardVideo.url),
+    video: publicVideoUrl("dashboard inteligente.mp4"),
   },
   {
     title: "Estoque AI",
@@ -260,7 +250,7 @@ const projects: Project[] = [
       "Solução inteligente de automação de inventário desenvolvida sob medida para o cliente. O aplicativo permite a gestão de estoque automatizada a partir da foto de uma nota fiscal: o sistema extrai os dados via OCR, processa as informações estruturadas usando IA local (LLM) e atualiza automaticamente produtos, quantidades e preços, eliminando o trabalho manual.",
     tech: ["React Native", "Python", "FastAPI/Flask", "EasyOCR", "Ollama", "PostgreSQL"],
     accent: "from-cyan-500/40 to-blue-600/30",
-    video: cdnUrl(estoqueVideo.url),
+    video: publicVideoUrl("EstoqueAI.mp4"),
   },
   {
     title: "Visão Computacional e Interface Humano-Computador",
@@ -268,7 +258,7 @@ const projects: Project[] = [
       "Aplicação de Visão Computacional focada em acessibilidade e interatividade. O sistema realiza o rastreamento em tempo real de marcos faciais (como a ponta do nariz) e gestos manuais para traduzir movimentos físicos em comandos de hardware (GamePad/Teclado), permitindo o controle do computador sem a necessidade de toque físico.",
     tech: ["Python", "MediaPipe", "OpenCV", "PyAutoGUI / Pygame"],
     accent: "from-violet-500/40 to-pink-500/30",
-    video: cdnUrl(visaoVideo.url),
+    video: publicVideoUrl("Computação visual.mp4"),
   }
 ];
 
